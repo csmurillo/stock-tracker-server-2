@@ -10,7 +10,7 @@ const {WatchList}=require('./models/watchList');
 
 const io = require('socket.io')(server,{
     cors: {
-        origin: process.env.ORIGIN_URL
+        origin: "https://stock-tracker-demo.netlify.app",
     },
 });
 
