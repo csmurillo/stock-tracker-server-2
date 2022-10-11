@@ -8,7 +8,7 @@ Stock Tracker Server 2
 - [Author](#author)
 
 ## Overview
-    Stock tracker server 2 purpse is to check if user's stock ticker price alert has been reached. Updates frontend UI if the price alert has been reached.
+ - Stock tracker server 2 purpose is to check if user's stock ticker price alert has been reached. Updates frontend UI if the price alert has been reached.
 
 ## Author
 
