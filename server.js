@@ -38,9 +38,9 @@ io.on('connection',async(socket)=>{
             const userWatchListStocks = watchList.stocks;
             for(let stockList of userWatchListStocks){
                 const watchListSymbol=stockList.tickerSymbol;
-                console.log(stockList.priceTargetReached+'~+~');
-                console.log(watchListSymbol+'WATCHLIST');
-                console.log(stockSymbol+'STOCKSYMBOL');
+                // console.log(stockList.priceTargetReached+'~+~');
+                // console.log(watchListSymbol+'WATCHLIST');
+                // console.log(stockSymbol+'STOCKSYMBOL');
                 if(stockSymbol===watchListSymbol){
                     console.log('inside');
                     console.log(stockList.priceTargetReached);
@@ -50,11 +50,11 @@ io.on('connection',async(socket)=>{
                     }
                 }
             }
-            console.log(inWatchList);
+            // console.log(inWatchList);
             if(!inWatchList){
                 socket.emit('updateOnWatchList',{insideWatchList:false});
             }
-            console.log('~~~~~~~~~~');
+            // console.log('~~~~~~~~~~');
         });
     });
 });

@@ -7,8 +7,6 @@ require("dotenv").config();
 // mark the alert price for the particular stock as reached.
 exports.userWatchlistLivePriceTargetAlertPrice= (userID)=>{    
         WatchList.findOne({ owner: userID}, async (err, watchList) => {
-            // console.log('UserID: '+userID);
-            // console.log('Stocks: ');
             const date = new Date();
             const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
             const stocks=watchList.stocks;
@@ -33,10 +31,6 @@ exports.userWatchlistLivePriceTargetAlertPrice= (userID)=>{
                 if(!stocks[i].priceTargetReached){
                     if(stocks[i].alertDirection==='above'){
                         if(parseFloat(stockPrice)>parseFloat(alertPrice)){
-                            // console.log('stock ALERT fulfilled above'+stockSymbol+'USER: '+userID);
-                            // console.log('StockSymbol:'+stockSymbol);
-                            // console.log('stockPrice'+stockPrice+'Alerting at'+alertPrice);
-                            // console.log('DATE: '+(month+1)+'/'+day+'/'+year);
                             stocks[i].priceTargetReached=true;
                             stocks[i].datePriceTargetReached=(month+1)+'/'+day+'/'+year;
                             
@@ -61,18 +55,6 @@ exports.userWatchlistLivePriceTargetAlertPrice= (userID)=>{
                                 return response.json();
                             })
                             .catch(err =>{ return err;});
-                            // 
-
-                            // console.log('server 2:(ABOVE)'+JSON.stringify(stockHistoryRes));
-                            // console.log('------------------------------------------------');
-
-                            // 
-                            // stocks[i].priceTargetReached=true;
-                            // stocks[i].datePriceTargetReached=month+'/'+day+'/'+year;
-                            // watchList.save((err,watchlist)=>{
-                            //     if(err){}
-                            // });
-                            // 
                             watchList.stocks=watchList.stocks.filter(stock=>stock.tickerSymbol!=stocks[i].tickerSymbol);
                             watchList.save((err,watchlist)=>{
                                 if(err){
@@ -84,10 +66,7 @@ exports.userWatchlistLivePriceTargetAlertPrice= (userID)=>{
                     }
                     else if(stocks[i].alertDirection==='below'){
                         if(parseFloat(stockPrice)<parseFloat(alertPrice)){
-                            // console.log('stock ALERT fulfilled below'+'USER: '+userID);
-                            // console.log('StockSymbol:'+stockSymbol);
-                            // console.log('stockPrice'+stockPrice+'Alerting at'+alertPrice);
-                            // console.log('DATE: '+(month+1)+'/'+day+'/'+year);
+
                             stocks[i].priceTargetReached=true;
                             stocks[i].datePriceTargetReached=(month+1)+'/'+day+'/'+year;
 
@@ -112,16 +91,7 @@ exports.userWatchlistLivePriceTargetAlertPrice= (userID)=>{
                                 return response.json();
                             })
                             .catch(err =>{ return err;});
-                            // 
-                            
-                            // console.log('server 2(BELOW):'+JSON.stringify(stockHistoryRes));
-                            // console.log('------------------------------------------------');
 
-                            // 
-                            // stocks[i].priceTargetReached=true;
-                            // stocks[i].datePriceTargetReached=month+'/'+day+'/'+year;
-                            // watchList.save((err,watchlist)=>{
-                            // });
                             // 
                             watchList.stocks=watchList.stocks.filter(stock=>stock.tickerSymbol!=stocks[i].tickerSymbol);
                             watchList.save((err,watchlist)=>{
